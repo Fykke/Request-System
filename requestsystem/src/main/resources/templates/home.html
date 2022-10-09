@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <link href="css/styles.css" rel="stylesheet"> <!-- connecting css -->
+    <meta charset="UTF-8">
+    <title>Request List</title>
+</head>
+<body>
+    <a href="/newrequest">  <!-- link is calling a GetMapping method which will redirect user to another page -->
+        <button class="navigationButton">New Request</button>
+    </a>
+    <div class="table">
+        <div class="row">
+            <div class="header cell">Component</div>
+            <div class="header cell">Name</div>
+            <div class="header cell">Addition</div>
+            <div class="header cell">Date</div>
+            <div class="header cell">Request done</div>
+        </div>
+        <th:block th:each="el : ${requests}"> <!-- used to iterate through given array of objects in DB -->
+            <div class="row">
+                <div class="cell" th:text="${el.component}"></div> <!-- getting element's (object's) value using thymeleaf -->
+                <div class="cell" th:text="${el.name}"></div>
+                <div class="cell" th:text="${el.addition}"></div>
+                <div class="cell" th:text="${el.date}"></div>
+                <div class="cell requestOuterCell" th:if="${el.requestDone}">   <!-- if value is true, thymeleaf will use the div below (the difference between both is the color) -->
+                    <div class="requestCell" th:text="${el.requestDone}" style="background-color: rgb(201,255,198)"></div>
+                </div>
+                <div class="cell requestOuterCell" th:unless="${el.requestDone}"> <!-- if value is false, thymeleaf will use the div below -->
+                    <div class="requestCell" th:text="${el.requestDone}" style="background-color: rgb(255,193,193)"></div>
+                </div>
+                <div id="editButtonContainer">
+                    <a th:href="'/requests/' + ${el.id}">  <!-- link is calling a GetMapping method which will redirect user to another page (about one of the requests) -->
+                        <button class="navigationButton" id="editButton">Edit</button>
+                    </a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</body>
+</html>

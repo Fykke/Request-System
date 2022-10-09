@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <link href="css/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>New Request</title>
+</head>
+<body>
+    <div id="requestDiv">
+        <a href="/requests"> <!-- link is calling a GetMapping method which will redirect user to another page -->
+            <button class="navigationButton requestButton">Go Back</button>
+        </a>
+        <form action="/newrequest" method="post"> <!-- form will send data to the PostMapping method with url /newrequest -->
+            <select id="component" name="component">
+                <option value="Graphics card" selected>Graphics card</option>
+                <option value="Processor">Processor</option>
+                <option value="Motherboard">Motherboard</option>
+                <option value="Power supply">Power supply</option>
+                <option value="Power supply">Hard drive / SSD</option>
+                <option value="Power supply">RAM</option>
+                <option value="Power supply">Cooling System</option>
+                <option value="Power supply">Other</option>
+            </select>
+            <input type="text" name="name" placeholder="Brand and model" maxlength="30" minlength="3">
+            <input type="text" name="addition" placeholder="Additional information" maxlength="50" minlength="0">
+            <button type="submit" class="navigationButton requestButton">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
